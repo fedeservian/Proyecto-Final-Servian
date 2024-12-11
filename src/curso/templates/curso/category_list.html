@@ -1,0 +1,10 @@
+{% extends 'curso/base.html' %}
+
+{% block contenido %}
+    <h1>List of Categories</h1>
+    <ul>
+        {% for object in object_list %}
+            <p>{{ object.name }} - {{ object.description }}</p>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}

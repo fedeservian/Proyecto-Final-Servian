@@ -1,0 +1,13 @@
+{% extends 'curso/base.html' %}
+
+{% block contenido %}
+    <h1>Inventory List</h1>
+    <ul>
+        {% for object in object_list %}
+            <p>{{ object.product }}
+                {{ object.location }}                
+                {{ object.stock_quantity }}             
+            </p>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}

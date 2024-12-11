@@ -12,8 +12,11 @@
 
 ## Objetivos del proyecto
 
-- 1°: Permitir a las empresas iniciar sesión y crear sus propios análisis de rendimiento en relación con las ventas.
-- 2°: Permitir que las personas interesadas puedan visualizar las publicaciones de análisis empresarial.
+- 1°: Gestionar la planificación de la producción, control de inventario, asignación de recursos y seguimiento de órdenes.
+
+## Usuarios Audiencia Dirigida
+
+Usuarios: Pueden ser roles como administradores, responsables de producción, y personal de inventario.
 
 ## Aspectos técnicos
 

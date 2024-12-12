@@ -2,6 +2,7 @@
 
 {% block contenido %}
     <h1>Inventory List</h1>
+    <a href="{% url 'curso:inventory_create' %}"><button>Update Inventory</button></a>
     <ul>
         {% for object in object_list %}
             <p>{{ object.product }}

@@ -2,6 +2,7 @@
 
 {% block contenido %}
     <h1>Production Order List</h1>
+    <a href="{% url 'curso:production_order_create' %}"><button>Create Production Order</button></a>
     <ul>
         {% for object in object_list %}
             <p>{{ object.order_number }}

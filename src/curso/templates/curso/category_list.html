@@ -2,9 +2,24 @@
 
 {% block contenido %}
     <h1>List of Categories</h1>
-    <ul>
-        {% for object in object_list %}
-            <p>{{ object.name }} - {{ object.description }}</p>
-        {% endfor %}
-    </ul>
+    <a href="{% url 'curso:category_create' %}"><button>Create Category</button></a>
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="padding-left: 20px;">Name</th> <!-- Padding añadido al encabezado -->
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <td style="padding-left: 20px;">{{ object.name }}</td> <!-- Padding en las celdas de contenido -->
+                    <td>{{ object.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock contenido %}
+
+
+

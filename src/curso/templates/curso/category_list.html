@@ -6,14 +6,14 @@
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr>
-                <th style="padding-left: 20px;">Name</th> <!-- Padding añadido al encabezado -->
+                <th style="padding-left: 20px;">Name</th> 
                 <th>Description</th>
             </tr>
         </thead>
         <tbody>
             {% for object in object_list %}
                 <tr>
-                    <td style="padding-left: 20px;">{{ object.name }}</td> <!-- Padding en las celdas de contenido -->
+                    <td style="padding-left: 20px;">{{ object.name }}</td> 
                     <td>{{ object.description }}</td>
                 </tr>
             {% endfor %}

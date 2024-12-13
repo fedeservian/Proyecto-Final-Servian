@@ -1,28 +1,28 @@
-# Tercera Pre-entrega Servian
+# Third Servian Pre-delivery
 
-## Curso
+## Course
 
-- Curso de Python
-- Comisión N°: 60095
-- Profesor: Esteban Acevedo
+- Python Course
+- Commission No.: 60095
+- Professor: Esteban Acevedo
 
-## Alumno
+## Student
 
-- Nombre: Federico Servian
+- Name: Federico Servian
 
-## Objetivos del proyecto
+## Project objectives
 
-- 1°: Gestionar la planificación de la producción, control de inventario, asignación de recursos y seguimiento de órdenes.
+- 1st: Manage production planning, inventory control, resource allocation and order tracking.
 
-## Usuarios Audiencia Dirigida
+## Target Audience
 
-Usuarios: Pueden ser roles como administradores, responsables de producción, y personal de inventario.
+Users: These can include roles such as administrators, production managers, and inventory personnel.
 
-## Aspectos técnicos
+## Technical aspects
 
-He usado Django. He creado 3 modelos en la aplicación X-
+In this Django project, I worked on creating an application to manage products, categories, production orders, and inventories. I started by creating forms for each of these elements, using ModelForm forms, which allow me to easily interact with the models and the database. For products, categories, production orders, and inventories, I defined their respective models with the necessary fields, such as name, description, quantity, and cost, enabling me to store and manage this information in the database. Then, I created URLs to access the various views of the application, such as the product list or the creation of new categories. Views are functions in Django that handle the logic behind each page, such as displaying stored items or processing forms. Additionally, I configured the Django admin interface to make it easy to manage this data from the admin panel, defining how products, categories, and other items should appear there. Finally, I designed the HTML templates that control the look of each page, using a common base template and specific templates for each feature, such as the category list or product creation. This approach allowed me to develop a functional web application for efficiently managing product production and inventory.
 
-## Puntos a mejorar
+## Points to improve
 
-- 1°
-- 1°
+- 1st: Improve the aesthetics and design of the pages
+- 2st: Improve form validation

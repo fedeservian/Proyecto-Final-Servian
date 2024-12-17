@@ -1,5 +1,6 @@
 from django import forms
 from .models import Product, ProductionOrder, Category, Inventory
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class CategoryForm(forms.ModelForm):
@@ -24,3 +25,8 @@ class InventoryForm(forms.ModelForm):
     class Meta:
         model = Inventory
         fields = ['product', 'location', 'stock_quantity']
+
+class CustomAuthenticationForm(AuthenticationForm):
+    class Meta:
+        model = AuthenticationForm
+        fields = ['username', 'password']

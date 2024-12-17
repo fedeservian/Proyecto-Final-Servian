@@ -1,0 +1,12 @@
+{% extends 'curso/base.html' %}
+
+{% block contenido %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Login</button>
+    </form>
+    <p>
+        Don't have an account? <a href="#">Register</a>
+    </p>
+{% endblock  %}

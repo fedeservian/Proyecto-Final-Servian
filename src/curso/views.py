@@ -1,6 +1,12 @@
 from django.shortcuts import redirect, render
 from .forms import CategoryForm, ProductForm, ProductionOrderForm, InventoryForm
 from .models import Category, Product, ProductionOrder, Inventory
+from .forms import CustomAuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse
 
 def index(request):
     return render(request, "curso/index.html")
@@ -64,4 +70,13 @@ def inventory_create(request):
             return redirect("curso:inventory_list")
     return render(request, "curso/inventory_form.html", {"form": form})
 
+ 
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+    template_name = 'curso/login.html'
+    next_page = reverse_lazy('curso:index')
 
+    def form_valid(self, form: AuthenticationForm) -> HttpResponse:
+        usuario = form.get_user()
+        messages.success(self.request, f"Login Successful, ¡Welcome {usuario.username}!")
+        return super().form_valid(form)

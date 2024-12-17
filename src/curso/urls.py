@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 from .views import index, about, category_list, product_list, production_order_list, inventory_list, category_create, product_create, production_order_create, inventory_create
 
 app_name = "curso"
@@ -17,4 +18,6 @@ urlpatterns = [
 
     path("inventory/list/", inventory_list, name="inventory_list"),
     path("inventory/create/", inventory_create, name="inventory_create"),
+
+    path('login/', views.CustomLoginView.as_view(), name='login'),
 ]

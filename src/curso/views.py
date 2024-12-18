@@ -34,6 +34,7 @@ def category_create(request):
     if request.method == "POST":
         form = CategoryForm(request.POST)
         if form.is_valid():
+            form.save()
             return redirect("curso:category_list")
     return render(request, "curso/category_form.html", {"form": form})
 
@@ -53,6 +54,7 @@ def product_create(request):
     if request.method == "POST":
         form = ProductForm(request.POST)
         if form.is_valid():
+            form.save()
             return redirect("curso:product_list")
     return render(request, "curso/product_form.html", {"form": form})
 
@@ -67,6 +69,7 @@ def production_order_create(request):
     if request.method == "POST":
         form = ProductionOrderForm(request.POST)
         if form.is_valid():
+            form.save()
             return redirect("curso:production_order_list")
     return render(request, "curso/production_order_form.html", {"form": form})
 
@@ -81,6 +84,7 @@ def inventory_create(request):
     if request.method == "POST":
         form = InventoryForm(request.POST)
         if form.is_valid():
+            form.save()
             return redirect("curso:inventory_list")
     return render(request, "curso/inventory_form.html", {"form": form})
 

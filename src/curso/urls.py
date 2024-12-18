@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.views import LogoutView
 from .views import index, about, category_list, product_list, production_order_list, inventory_list, category_create, product_create, production_order_create, inventory_create
 
 app_name = "curso"
@@ -20,5 +21,6 @@ urlpatterns = [
     path("inventory/create/", inventory_create, name="inventory_create"),
 
     path('login/', views.CustomLoginView.as_view(), name='login'),
-    path('register/', views.CustomRegisterView.as_view(), name='register' )
+    path('logout/', LogoutView.as_view(template_name='curso/logout.html'), name='logout'),
+    path('register/', views.CustomRegisterView.as_view(), name='register' ),
 ]

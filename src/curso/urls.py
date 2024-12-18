@@ -20,4 +20,5 @@ urlpatterns = [
     path("inventory/create/", inventory_create, name="inventory_create"),
 
     path('login/', views.CustomLoginView.as_view(), name='login'),
+    path('register/', views.CustomRegisterView.as_view(), name='register' )
 ]

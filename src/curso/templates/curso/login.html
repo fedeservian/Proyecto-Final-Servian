@@ -1,14 +1,22 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
+<h1>Login</h1>
+
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+
     <form method="post">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Login</button>
     </form>
-    <p>
-        Don't have an account? <a href="#">Register</a>
-    </p><a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 
+    <p>
+        Don't have an account? <a href="{% url 'curso:register' %}">Register</a>
+    </p>
+    
+    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 
 {% endblock  %}

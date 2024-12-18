@@ -1,12 +1,16 @@
 from django.shortcuts import redirect, render
 from .forms import CategoryForm, ProductForm, ProductionOrderForm, InventoryForm
 from .models import Category, Product, ProductionOrder, Inventory
-from .forms import CustomAuthenticationForm
+from .forms import CustomAuthenticationForm, CustomCreationForm
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic import CreateView
+from django.forms import ModelForm
+
+
 
 def index(request):
     return render(request, "curso/index.html")
@@ -79,4 +83,16 @@ class CustomLoginView(LoginView):
     def form_valid(self, form: AuthenticationForm) -> HttpResponse:
         usuario = form.get_user()
         messages.success(self.request, f"Login Successful, ¡Welcome {usuario.username}!")
+        return super().form_valid(form)
+    
+class CustomRegisterView(CreateView):
+    form_class = CustomCreationForm
+    template_name = 'curso/register.html'
+    
+    
+    def get_success_url(self):
+        return reverse_lazy('curso:login')  
+
+    def form_valid(self, form):
+        messages.success(self.request, "¡Registered Successfully! Your account has been created. Now login to access your profile.")
         return super().form_valid(form)

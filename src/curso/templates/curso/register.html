@@ -1,0 +1,12 @@
+{% extends 'curso/base.html' %}
+
+{% block contenido %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type=""submit>Register</button>
+    </form>
+    <p>
+        Do you have an account? <a href="{% url 'curso:login' %}">Login</a>
+    </p><a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
+{% endblock contenido %}

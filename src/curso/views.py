@@ -18,10 +18,15 @@ def index(request):
 def about(request):
     return render(request, "curso/about.html")
 
-def category_list(request):
-    query = Category.objects.all()
-    context = {"object_list": query}
+def category_list(request: HttpResponse) -> HttpResponse:
+    search_query = request.GET.get('search')
+    if search_query:
+        queryset = Category.objects.filter(name__icontains=search_query)
+    else:
+        queryset = Category.objects.all()
+    context = {"object_list": queryset, 'search_query': search_query}
     return render(request, "curso/category_list.html", context)
+
 
 def category_create(request):
     if request.method == "GET":
@@ -32,10 +37,15 @@ def category_create(request):
             return redirect("curso:category_list")
     return render(request, "curso/category_form.html", {"form": form})
 
-def product_list(request):
-    query = Product.objects.all()
-    context = {"object_list": query}
+def product_list(request: HttpResponse) -> HttpResponse:
+    search_query = request.GET.get('search')
+    if search_query:
+        queryset = Product.objects.filter(name__icontains=search_query)
+    else:
+        queryset = Product.objects.all()
+    context = {"object_list": queryset, 'search_query': search_query}
     return render(request, "curso/product_list.html", context)
+
 
 def product_create(request):
     if request.method == "GET":

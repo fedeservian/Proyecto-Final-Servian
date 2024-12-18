@@ -2,6 +2,10 @@
 
 {% block contenido %}
     <h1>Product List</h1>
+    <form action="" method="get">
+        <input type="text" name="search" placeholder={{ search_query }}>
+        <button type="submit">Go</button>
+    </form>
     <a href="{% url 'curso:product_create' %}"><button>Create Product</button></a>
     <ul>
         {% for object in object_list %}

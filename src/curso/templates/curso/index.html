@@ -3,6 +3,10 @@
 {% block contenido %}
 <main style="text-align: center;">
     <h1>¡Welcome!</h1>
+
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
     <div>
         {% if user.is_authenticated %}
             <a href="{% url 'curso:category_list' %}"><button>Categories</button></a>
@@ -15,12 +19,11 @@
                 <button type="submit">Logout</button>
             </form>
         {% else %}
+        <a href="{% url 'curso:register' %}"><button>Register</button></a>
             <a href="{% url 'curso:login' %}"><button>Login</button></a>
         {% endif %}
     </div>
 </main>
 
-{% for message in messages %}
-    <p>{{ message }}</p>
-{% endfor %}
+
 {% endblock %}

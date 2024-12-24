@@ -15,10 +15,15 @@
             <a href="{% url 'curso:inventory_list' %}"><button>Inventory</button></a>
             <a href="{% url 'curso:about' %}"><button>About me</button></a>
 
+            <a href="{% url 'curso:profile' %}">
+                <button style="cursor: pointer;">Update Profile</button>
+            </a>
+
             <form action="{% url 'curso:logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Logout</button>
             </form>
+                        
         {% else %}
         <a href="{% url 'curso:register' %}"><button>Register</button></a>
             <a href="{% url 'curso:login' %}"><button>Login</button></a>

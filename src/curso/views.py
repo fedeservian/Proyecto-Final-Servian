@@ -1,14 +1,15 @@
 from django.shortcuts import redirect, render
 from .forms import CategoryForm, ProductForm, ProductionOrderForm, InventoryForm
 from .models import Category, Product, ProductionOrder, Inventory
-from .forms import CustomAuthenticationForm, CustomCreationForm
+from .forms import CustomAuthenticationForm, CustomCreationForm, UserProfileForm
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.forms import ModelForm
+from django.contrib.auth.models import User
 
 
 
@@ -110,3 +111,12 @@ class CustomRegisterView(CreateView):
     def form_valid(self, form):
         messages.success(self.request, "¡Registered Successfully! Your account has been created. Now login to access your profile.")
         return super().form_valid(form)
+    
+class UpdateProfileView(UpdateView):
+    model = User
+    form_class = UserProfileForm
+    template_name = 'curso/profile.html'
+    success_url = reverse_lazy('curso:index')
+
+    def get_object(self):
+        return self.request.user

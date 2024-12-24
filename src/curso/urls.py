@@ -7,7 +7,7 @@ app_name = "curso"
 
 urlpatterns = [
     path("", index, name="index"),
-    path("about/", about, name="about"),
+    path("about/", views.about, name="about"),
     path("category/list/", category_list, name="category_list"),
     path("category/create/", category_create, name="category_create"),
     

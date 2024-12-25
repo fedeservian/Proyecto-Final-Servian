@@ -2,8 +2,11 @@
 
 {% block contenido %}
 <main style="text-align: center;">
-    <h1>¡Welcome!</h1>
+    <h1 style="margin-top: 10px;">InnoByte</h1>
 
+    
+
+    
     {% for message in messages %}
     <p>{{ message }}</p>
     {% endfor %}
@@ -16,7 +19,7 @@
             <a href="{% url 'curso:about' %}"><button>About me</button></a>
 
             <a href="{% url 'curso:profile' %}">
-                <button style="cursor: pointer;">Update Profile</button>
+                <button style="cursor: pointer;">Profile</button>
             </a>
 
             <form action="{% url 'curso:logout' %}" method="post">
@@ -25,8 +28,15 @@
             </form>
                         
         {% else %}
-        <a href="{% url 'curso:register' %}"><button>Register</button></a>
-            <a href="{% url 'curso:login' %}"><button>Login</button></a>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; height: 65vh;">
+            <p style="font-size: 40px;">¡Welcome!</p>
+            <div style="display: flex; gap: 10px;">
+                <a href="{% url 'curso:register' %}"><button>Register</button></a>
+                <a href="{% url 'curso:login' %}"><button>Login</button></a>
+                <a href="{% url 'curso:about' %}"><button>About me</button></a>
+            </div>
+        </div>               
+</div>        
         {% endif %}
     </div>
     

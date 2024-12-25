@@ -10,6 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -19,6 +20,7 @@ def index(request):
 def about(request):
     return render(request, "curso/about.html")
 
+@login_required
 def category_list(request: HttpResponse) -> HttpResponse:
     search_query = request.GET.get('search')
     if search_query:
@@ -39,6 +41,7 @@ def category_create(request):
             return redirect("curso:category_list")
     return render(request, "curso/category_form.html", {"form": form})
 
+@login_required
 def product_list(request: HttpResponse) -> HttpResponse:
     search_query = request.GET.get('search')
     if search_query:
@@ -59,6 +62,7 @@ def product_create(request):
             return redirect("curso:product_list")
     return render(request, "curso/product_form.html", {"form": form})
 
+@login_required
 def production_order_list(request):
     query = ProductionOrder.objects.all()
     context = {"object_list": query}
@@ -74,6 +78,7 @@ def production_order_create(request):
             return redirect("curso:production_order_list")
     return render(request, "curso/production_order_form.html", {"form": form})
 
+@login_required
 def inventory_list(request):
     query = Inventory.objects.all()
     context = {"object_list": query}

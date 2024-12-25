@@ -3,16 +3,31 @@
 {% block contenido %}
     <h1>Production Order List</h1>
     <a href="{% url 'curso:production_order_create' %}"><button>Create Production Order</button></a>
-    <ul>
-        {% for object in object_list %}
-            <p>{{ object.order_number }}
-                {{ object.product }}
-                {{ object.status }}  
-                {{ object.quantity }}             
-            </p>
-        {% endfor %}
-        <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{ object.order_number }}</td>
+                    <td>{{ object.product }}</td>
+                    <td>{{ object.quantity }}</td>
+                    <td>{{ object.status }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>No data available</td>
+                </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
 
-    </ul>
+    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 {% endblock contenido %}

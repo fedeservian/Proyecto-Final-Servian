@@ -22,7 +22,10 @@
                     <td>{{ object.description }}</td>
                 </tr>
                 
-
+            {% empty %}
+                <tr>
+                    <td>No data available</td>
+                </tr> 
             {% endfor %}
             <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 

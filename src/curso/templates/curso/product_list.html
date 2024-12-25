@@ -2,22 +2,41 @@
 
 {% block contenido %}
     <h1>Product List</h1>
+
     <form action="" method="get">
-        <input type="text" name="search" placeholder={{ search_query }}>
+        <input type="text" name="search" placeholder="{{ search_query }}">
         <button type="submit">Go</button>
     </form>
     <a href="{% url 'curso:product_create' %}"><button>Create Product</button></a>
-    <ul>
-        {% for object in object_list %}
-            <p>{{ object.name }}
-                {{ object.description }}
-                {{ object.product_time }}  
-                {{ object.cost_price }} 
-                {{ object.category }}
-            </p>
-        {% endfor %}
-        <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="padding-left: 20px;">Name</th>
+                <th>Description</th>
+                <th>Production Time</th>
+                <th>Cost Price (USD)</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <td style="padding-left: 20px;">{{ object.name }}</td>
+                    <td>{{ object.description }}</td>
+                    <td>{{ object.production_time }} hs</td> 
+                    <td>$ {{ object.cost_price }}</td>
+                    <td>{{ object.category }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>No data available</td>
+                </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
 
-    </ul>
+    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 {% endblock contenido %}
+
+

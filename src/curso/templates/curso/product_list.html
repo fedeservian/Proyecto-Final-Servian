@@ -17,6 +17,7 @@
                 <th>Production Time</th>
                 <th>Cost Price (USD)</th>
                 <th>Category</th>
+                <th>Actions</th> 
             </tr>
         </thead>
         <tbody>
@@ -27,10 +28,19 @@
                     <td>{{ object.production_time }} hs</td> 
                     <td>$ {{ object.cost_price }}</td>
                     <td>{{ object.category }}</td>
+                    <td>
+                        {% if object.id %}
+                            <a href="{% url 'curso:product_update' object.id %}">
+                                <button>Edit</button>
+                            </a>
+                        {% else %}
+                            <span>No ID</span>
+                        {% endif %}
+                    </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td>No data available</td>
+                    <td colspan="6">No products found.</td> 
                 </tr> 
             {% endfor %}
         </tbody>
@@ -38,5 +48,6 @@
 
     <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 {% endblock contenido %}
+
 
 

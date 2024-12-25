@@ -4,7 +4,7 @@
     <h1>List of Categories</h1>
 
     <form action="" method="get">
-        <input type="text" name="search" placeholder={{ search_query}}>
+        <input type="text" name="search" placeholder="{{ search_query }}">
         <button type="submit">Go</button>
     </form>
     <a href="{% url 'curso:category_create' %}"><button>Create Category</button></a>
@@ -13,6 +13,7 @@
             <tr>
                 <th style="padding-left: 20px;">Name</th> 
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,19 +21,28 @@
                 <tr>
                     <td style="padding-left: 20px;">{{ object.name }}</td> 
                     <td>{{ object.description }}</td>
+                    <td>
+                        {% if object.id %}
+                            <a href="{% url 'curso:category_update' object.id %}">
+                                <button>Edit</button>
+                            </a>
+                        {% else %}
+                            <span>No ID</span>  
+                        {% endif %}
+                    </td>
                 </tr>
-                
             {% empty %}
                 <tr>
-                    <td>No data available</td>
+                    <td colspan="3">No categories found.</td>
                 </tr> 
             {% endfor %}
-            <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
-
-
         </tbody>
     </table>
+    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; text-align: center;">Back</a>
 {% endblock contenido %}
+
+
+
 
 
 

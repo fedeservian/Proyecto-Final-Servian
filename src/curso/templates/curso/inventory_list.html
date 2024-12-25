@@ -11,6 +11,7 @@
                 <th>Product</th>
                 <th>Location</th>
                 <th>Stock Quantity</th>
+                <th>Actions</th> <!-- Added actions column -->
             </tr>
         </thead>
         <tbody>
@@ -20,10 +21,19 @@
                     <td>{{ object.product }}</td>
                     <td>{{ object.location }}</td>
                     <td>{{ object.stock_quantity }}</td>
+                    <td>
+                        {% if object.id %}
+                            <a href="{% url 'curso:production_order_update' object.id %}">
+                                <button>Edit</button>
+                            </a>
+                        {% else %}
+                            <span>No ID</span>
+                        {% endif %}
+                    </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td>No data available</td>
+                    <td colspan="5">No production orders found.</td> <!-- Adjusted colspan for new column -->
                 </tr>   
             {% endfor %}
         </tbody>
@@ -31,4 +41,5 @@
 
     <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 {% endblock contenido %}
+
 

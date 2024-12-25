@@ -41,6 +41,19 @@ def category_create(request):
             return redirect("curso:category_list")
     return render(request, "curso/category_form.html", {"form": form})
 
+
+# Categoria UPDATE VIEW
+def category_update(request, pk: int):
+    query = Category.objects.get(id=pk)
+    if request.method == "GET":
+        form = CategoryForm(instance=query)
+    if request.method == "POST":
+        form = CategoryForm(request.POST, instance=query)
+        if form.is_valid():
+            form.save()
+            return redirect("curso:category_list")
+    return render(request, "curso/category_form.html", {"form": form})
+
 @login_required
 def product_list(request: HttpResponse) -> HttpResponse:
     search_query = request.GET.get('search')
@@ -62,6 +75,17 @@ def product_create(request):
             return redirect("curso:product_list")
     return render(request, "curso/product_form.html", {"form": form})
 
+def product_update(request, pk: int):
+    query = Category.objects.get(id=pk)
+    if request.method == "GET":
+        form = ProductForm(instance=query)
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=query)
+        if form.is_valid():
+            form.save()
+            return redirect("curso:product_list")
+    return render(request, "curso/product_form.html", {"form": form})
+
 @login_required
 def production_order_list(request):
     query = ProductionOrder.objects.all()
@@ -78,6 +102,17 @@ def production_order_create(request):
             return redirect("curso:production_order_list")
     return render(request, "curso/production_order_form.html", {"form": form})
 
+def production_order_update(request, pk: int):
+    query = Category.objects.get(id=pk)
+    if request.method == "GET":
+        form = ProductionOrderForm(instance=query)
+    if request.method == "POST":
+        form = ProductionOrderForm(request.POST, instance=query)
+        if form.is_valid():
+            form.save()
+            return redirect("curso:production_order_list")
+    return render(request, "curso/production_order_form.html", {"form": form})
+
 @login_required
 def inventory_list(request):
     query = Inventory.objects.all()
@@ -89,6 +124,17 @@ def inventory_create(request):
         form = InventoryForm()
     if request.method == "POST":
         form = InventoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("curso:inventory_list")
+    return render(request, "curso/inventory_form.html", {"form": form})
+
+def inventory_update(request, pk: int):
+    query = Category.objects.get(id=pk)
+    if request.method == "GET":
+        form = InventoryForm(instance=query)
+    if request.method == "POST":
+        form = InventoryForm(request.POST, instance=query)
         if form.is_valid():
             form.save()
             return redirect("curso:inventory_list")

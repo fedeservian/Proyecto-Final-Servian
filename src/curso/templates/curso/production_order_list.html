@@ -1,6 +1,9 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
+<a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
+    Back
+</a>
     <h1>Production Order List</h1>
     <a href="{% url 'curso:production_order_create' %}"><button>Create Production Order</button></a>
 
@@ -11,7 +14,7 @@
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Status</th>
-                <th>Actions</th> <!-- Added actions column -->
+                <th>Actions</th> 
             </tr>
         </thead>
         <tbody>
@@ -33,12 +36,10 @@
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5">No production orders found.</td> <!-- Adjusted colspan for new column -->
+                    <td colspan="5">No production orders found.</td>
                 </tr> 
             {% endfor %}
         </tbody>
     </table>
-
-    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Back</a>
 {% endblock contenido %}
 

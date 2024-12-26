@@ -11,6 +11,8 @@ from django.views.generic import CreateView, UpdateView
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpRequest
+
 
 
 
@@ -53,6 +55,10 @@ def category_update(request, pk: int):
             form.save()
             return redirect("curso:category_list")
     return render(request, "curso/category_form.html", {"form": form})
+
+def category_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Category.objects.get(id=pk)
+    return render(request, 'curso/category_detail.html', {'object': query})
 
 @login_required
 def product_list(request: HttpResponse) -> HttpResponse:

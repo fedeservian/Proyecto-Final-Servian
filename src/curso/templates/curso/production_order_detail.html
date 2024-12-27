@@ -1,0 +1,15 @@
+{% extends 'curso/base.html' %}
+
+{% block contenido %}
+<a href="{% url 'curso:production_order_list' %}" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
+    Back
+</a>
+    <h1>Production Order - Detail view</h1>
+    
+<ul style="list-style: none; padding: 0;">
+    <li><strong>Order Number:</strong> {{ object.order_number }}</li>
+    <li><strong>Product:</strong> {{ object.product }}</li>
+    <li><strong>Quantity:</strong> {{ object.quantity }}</li>
+    <li><strong>Status:</strong> {{ object.status }}</li>
+</ul>
+{% endblock contenido %}

@@ -60,6 +60,13 @@ def category_detail(request: HttpRequest, pk: int) -> HttpResponse:
     query = Category.objects.get(id=pk)
     return render(request, 'curso/category_detail.html', {'object': query})
 
+def category_delete(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Category.objects.get(id=pk)
+    if request.method == 'POST':
+        query.delete()
+        return redirect('curso:category_list')
+    return render(request, 'curso/category_confirm_delete.html', {'object': query})
+
 @login_required
 def product_list(request: HttpResponse) -> HttpResponse:
     search_query = request.GET.get('search')
@@ -92,6 +99,10 @@ def product_update(request, pk: int):
             return redirect("curso:product_list")
     return render(request, "curso/product_form.html", {"form": form})
 
+def product_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Product.objects.get(id=pk)
+    return render(request, 'curso/product_detail.html', {'object': query})
+
 @login_required
 def production_order_list(request):
     query = ProductionOrder.objects.all()
@@ -119,6 +130,10 @@ def production_order_update(request, pk: int):
             return redirect("curso:production_order_list")
     return render(request, "curso/production_order_form.html", {"form": form})
 
+def production_order_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    query = ProductionOrder.objects.get(id=pk)
+    return render(request, 'curso/production_order_detail.html', {'object': query})
+
 @login_required
 def inventory_list(request):
     query = Inventory.objects.all()
@@ -145,6 +160,10 @@ def inventory_update(request, pk: int):
             form.save()
             return redirect("curso:inventory_list")
     return render(request, "curso/inventory_form.html", {"form": form})
+
+def inventory_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Inventory.objects.get(id=pk)
+    return render(request, 'curso/inventory_detail.html', {'object': query})
 
  
 class CustomLoginView(LoginView):

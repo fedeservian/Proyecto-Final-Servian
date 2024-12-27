@@ -26,7 +26,8 @@ class ProductionOrderForm(forms.ModelForm):
 class InventoryForm(forms.ModelForm):
     class Meta:
         model = Inventory
-        fields = ['product', 'location', 'stock_quantity']
+        fields = ['order_number', 'product', 'location', 'stock_quantity']  
+
 
 class CustomAuthenticationForm(AuthenticationForm):
     class Meta:

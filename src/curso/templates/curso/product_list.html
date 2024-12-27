@@ -39,6 +39,14 @@
                         {% else %}
                             <span>No ID</span>
                         {% endif %}
+                        {% if object.id %}
+                                <a href="{% url 'curso:product_detail' object.id %}">
+                                <button>View</button>
+                            </a>
+                        {% else %}
+                            <span>No ID</span>
+                        {% endif %}
+                        
                     </td>
                 </tr>
             {% empty %}

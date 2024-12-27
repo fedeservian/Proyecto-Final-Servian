@@ -28,6 +28,7 @@ class ProductionOrder(models.Model):
    
 
 class Inventory(models.Model):
+    order_number = models.CharField(max_length=50)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)  
     location = models.CharField(max_length=100)  
     stock_quantity = models.IntegerField()  

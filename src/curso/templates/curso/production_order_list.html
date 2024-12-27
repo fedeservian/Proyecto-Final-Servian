@@ -39,6 +39,9 @@
                         {% else %}
                             <span>No ID</span>
                         {% endif %}
+                        <a href="{% url 'curso:production_order_delete' object.id %}">
+                            <button>Delete</button>
+                        </a>
                         
                     </td>
                 </tr>

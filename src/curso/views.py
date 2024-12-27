@@ -89,7 +89,7 @@ def product_create(request):
     return render(request, "curso/product_form.html", {"form": form})
 
 def product_update(request, pk: int):
-    query = Category.objects.get(id=pk)
+    query = Product.objects.get(id=pk)
     if request.method == "GET":
         form = ProductForm(instance=query)
     if request.method == "POST":
@@ -102,6 +102,13 @@ def product_update(request, pk: int):
 def product_detail(request: HttpRequest, pk: int) -> HttpResponse:
     query = Product.objects.get(id=pk)
     return render(request, 'curso/product_detail.html', {'object': query})
+
+def product_delete(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Product.objects.get(id=pk)
+    if request.method == 'POST':
+        query.delete()
+        return redirect('curso:product_list')
+    return render(request, 'curso/product_confirm_delete.html', {'object': query})
 
 @login_required
 def production_order_list(request):
@@ -120,7 +127,7 @@ def production_order_create(request):
     return render(request, "curso/production_order_form.html", {"form": form})
 
 def production_order_update(request, pk: int):
-    query = Category.objects.get(id=pk)
+    query = ProductionOrder.objects.get(id=pk)
     if request.method == "GET":
         form = ProductionOrderForm(instance=query)
     if request.method == "POST":
@@ -133,6 +140,13 @@ def production_order_update(request, pk: int):
 def production_order_detail(request: HttpRequest, pk: int) -> HttpResponse:
     query = ProductionOrder.objects.get(id=pk)
     return render(request, 'curso/production_order_detail.html', {'object': query})
+
+def production_order_delete(request: HttpRequest, pk: int) -> HttpResponse:
+    query = ProductionOrder.objects.get(id=pk)
+    if request.method == 'POST':
+        query.delete()
+        return redirect('curso:production_order_list')
+    return render(request, 'curso/producttion_order_confirm_delete.html', {'object': query})
 
 @login_required
 def inventory_list(request):
@@ -151,7 +165,7 @@ def inventory_create(request):
     return render(request, "curso/inventory_form.html", {"form": form})
 
 def inventory_update(request, pk: int):
-    query = Category.objects.get(id=pk)
+    query = Inventory.objects.get(id=pk)
     if request.method == "GET":
         form = InventoryForm(instance=query)
     if request.method == "POST":
@@ -164,6 +178,13 @@ def inventory_update(request, pk: int):
 def inventory_detail(request: HttpRequest, pk: int) -> HttpResponse:
     query = Inventory.objects.get(id=pk)
     return render(request, 'curso/inventory_detail.html', {'object': query})
+
+def inventory_delete(request: HttpRequest, pk: int) -> HttpResponse:
+    query = Inventory.objects.get(id=pk)
+    if request.method == 'POST':
+        query.delete()
+        return redirect('curso:inventory_list')
+    return render(request, 'curso/inventory_confirm_delete.html', {'object': query})
 
  
 class CustomLoginView(LoginView):

@@ -1,0 +1,17 @@
+{% extends 'curso/base.html' %}
+
+{% block content %}
+<main style="text-align: center;">
+    <h1 style="margin-top: 10px;">Management Dashboard</h1>
+
+    <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'curso:category_list' %}"><button>Categories</button></a>
+            <a href="{% url 'curso:product_list' %}"><button>Products</button></a>
+            <a href="{% url 'curso:production_order_list' %}"><button>Production Orders</button></a>
+            <a href="{% url 'curso:inventory_list' %}"><button>Inventory</button></a>
+            <a href="{% url 'curso:about' %}"><button>About me</button></a>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

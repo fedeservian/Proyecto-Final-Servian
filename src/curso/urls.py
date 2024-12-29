@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import ManagementView
 from . import views
 from django.contrib.auth.views import LogoutView
 from .views import index, about, category_list, product_list, production_order_list, inventory_list, category_create, product_create, production_order_create, inventory_create
@@ -39,4 +40,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='curso/logout.html'), name='logout'),
     path('register/', views.CustomRegisterView.as_view(), name='register' ),
     path('profile/', views.UpdateProfileView.as_view(), name='profile'),
+
+    path('management/', views.ManagementView, name='management'),
 ]

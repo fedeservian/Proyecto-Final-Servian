@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 from .forms import CategoryForm, ProductForm, ProductionOrderForm, InventoryForm, CustomAuthenticationForm, CustomCreationForm, UserProfileForm
 from .models import Category, Product, ProductionOrder, Inventory
+from django.views.generic import TemplateView
 
 
 
@@ -245,3 +246,6 @@ class UpdateProfileView(UpdateView):
 
     def get_object(self):
         return self.request.user
+    
+def ManagementView(request):
+    return render(request, "curso/management.html")

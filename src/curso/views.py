@@ -1,18 +1,15 @@
-from django.shortcuts import redirect, render
-from .forms import CategoryForm, ProductForm, ProductionOrderForm, InventoryForm
-from .models import Category, Product, ProductionOrder, Inventory
-from .forms import CustomAuthenticationForm, CustomCreationForm, UserProfileForm
-from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import CreateView, UpdateView
-from django.forms import ModelForm
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpRequest
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
+from django.forms import ModelForm
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
+from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView
+from .forms import CategoryForm, ProductForm, ProductionOrderForm, InventoryForm, CustomAuthenticationForm, CustomCreationForm, UserProfileForm
+from .models import Category, Product, ProductionOrder, Inventory
 
 
 
@@ -85,26 +82,28 @@ def category_delete(request: HttpRequest, pk: int) -> HttpResponse:
 @login_required
 def product_list(request: HttpResponse) -> HttpResponse:
     search_query = request.GET.get('search')
+    queryset = Product.objects.filter(user=request.user)
     if search_query:
-        queryset = Product.objects.filter(name__icontains=search_query)
-    else:
-        queryset = Product.objects.all()
+        queryset = queryset.filter(name__icontains=search_query)
     context = {"object_list": queryset, 'search_query': search_query}
     return render(request, "curso/product_list.html", context)
 
-
+@login_required
 def product_create(request):
     if request.method == "GET":
         form = ProductForm()
     if request.method == "POST":
         form = ProductForm(request.POST)
         if form.is_valid():
-            form.save()
+            product = form.save(commit=False)
+            product.user = request.user
+            product.save()
             return redirect("curso:product_list")
     return render(request, "curso/product_form.html", {"form": form})
 
+@login_required
 def product_update(request, pk: int):
-    query = Product.objects.get(id=pk)
+    query = get_object_or_404(Product, id=pk, user=request.user)
     if request.method == "GET":
         form = ProductForm(instance=query)
     if request.method == "POST":
@@ -114,12 +113,14 @@ def product_update(request, pk: int):
             return redirect("curso:product_list")
     return render(request, "curso/product_form.html", {"form": form})
 
+@login_required
 def product_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Product.objects.get(id=pk)
+    query = get_object_or_404(Product, id=pk, user=request.user)
     return render(request, 'curso/product_detail.html', {'object': query})
 
+@login_required
 def product_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Product.objects.get(id=pk)
+    query = get_object_or_404(Product, id=pk, user=request.user)
     if request.method == 'POST':
         query.delete()
         return redirect('curso:product_list')
@@ -131,18 +132,22 @@ def production_order_list(request):
     context = {"object_list": query}
     return render(request, "curso/production_order_list.html", context)
 
+@login_required
 def production_order_create(request):
     if request.method == "GET":
         form = ProductionOrderForm()
     if request.method == "POST":
         form = ProductionOrderForm(request.POST)
         if form.is_valid():
-            form.save()
+            order = form.save(commit=False)
+            order.user = request.user  # Asignar el usuario autenticado
+            order.save()
             return redirect("curso:production_order_list")
     return render(request, "curso/production_order_form.html", {"form": form})
 
+@login_required
 def production_order_update(request, pk: int):
-    query = ProductionOrder.objects.get(id=pk)
+    query = get_object_or_404(ProductionOrder, id=pk, user=request.user)
     if request.method == "GET":
         form = ProductionOrderForm(instance=query)
     if request.method == "POST":
@@ -152,12 +157,14 @@ def production_order_update(request, pk: int):
             return redirect("curso:production_order_list")
     return render(request, "curso/production_order_form.html", {"form": form})
 
+@login_required
 def production_order_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    query = ProductionOrder.objects.get(id=pk)
+    query = get_object_or_404(ProductionOrder, id=pk, user=request.user)
     return render(request, 'curso/production_order_detail.html', {'object': query})
 
+@login_required
 def production_order_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    query = ProductionOrder.objects.get(id=pk)
+    query = get_object_or_404(ProductionOrder, id=pk, user=request.user)
     if request.method == 'POST':
         query.delete()
         return redirect('curso:production_order_list')
@@ -165,22 +172,26 @@ def production_order_delete(request: HttpRequest, pk: int) -> HttpResponse:
 
 @login_required
 def inventory_list(request):
-    query = Inventory.objects.all()
+    query = Inventory.objects.filter(user=request.user)
     context = {"object_list": query}
     return render(request, "curso/inventory_list.html", context)
 
+@login_required
 def inventory_create(request):
     if request.method == "GET":
         form = InventoryForm()
     if request.method == "POST":
         form = InventoryForm(request.POST)
         if form.is_valid():
-            form.save()
+            inventory = form.save(commit=False)
+            inventory.user = request.user  # Asignar el usuario autenticado
+            inventory.save()
             return redirect("curso:inventory_list")
     return render(request, "curso/inventory_form.html", {"form": form})
 
+@login_required
 def inventory_update(request, pk: int):
-    query = Inventory.objects.get(id=pk)
+    query = get_object_or_404(Inventory, id=pk, user=request.user)
     if request.method == "GET":
         form = InventoryForm(instance=query)
     if request.method == "POST":
@@ -190,12 +201,14 @@ def inventory_update(request, pk: int):
             return redirect("curso:inventory_list")
     return render(request, "curso/inventory_form.html", {"form": form})
 
+@login_required
 def inventory_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Inventory.objects.get(id=pk)
+    query = get_object_or_404(Inventory, id=pk, user=request.user)
     return render(request, 'curso/inventory_detail.html', {'object': query})
 
+@login_required
 def inventory_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Inventory.objects.get(id=pk)
+    query = get_object_or_404(Inventory, id=pk, user=request.user)
     if request.method == 'POST':
         query.delete()
         return redirect('curso:inventory_list')

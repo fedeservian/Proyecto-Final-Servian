@@ -12,6 +12,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpRequest
+from django.shortcuts import get_object_or_404
 
 
 
@@ -22,33 +23,43 @@ def index(request):
 def about(request):
     return render(request, "curso/about.html")
 
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Category
+
 @login_required
 def category_list(request: HttpResponse) -> HttpResponse:
     search_query = request.GET.get('search')
+    queryset = Category.objects.filter(user=request.user)
     if search_query:
-        queryset = Category.objects.filter(name__icontains=search_query)
-    else:
-        queryset = Category.objects.all()
-    context = {"object_list": queryset, 'search_query': search_query}
+        queryset = queryset.filter(name__icontains=search_query)
+    context = {
+        "object_list": queryset,  
+        'search_query': search_query
+    }
     return render(request, "curso/category_list.html", context)
 
 
+
+@login_required
 def category_create(request):
     if request.method == "GET":
         form = CategoryForm()
     if request.method == "POST":
         form = CategoryForm(request.POST)
         if form.is_valid():
-            form.save()
+            category = form.save(commit=False)  
+            category.user = request.user  
+            category.save()  
             return redirect("curso:category_list")
     return render(request, "curso/category_form.html", {"form": form})
 
 
-# Categoria UPDATE VIEW
+@login_required
 def category_update(request, pk: int):
-    query = Category.objects.get(id=pk)
-    if request.method == "GET":
-        form = CategoryForm(instance=query)
+    query = get_object_or_404(Category, id=pk, user=request.user)  
+    form = CategoryForm(instance=query)
     if request.method == "POST":
         form = CategoryForm(request.POST, instance=query)
         if form.is_valid():
@@ -56,16 +67,20 @@ def category_update(request, pk: int):
             return redirect("curso:category_list")
     return render(request, "curso/category_form.html", {"form": form})
 
+@login_required
 def category_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Category.objects.get(id=pk)
+    query = get_object_or_404(Category, id=pk, user=request.user)  
     return render(request, 'curso/category_detail.html', {'object': query})
 
+
+@login_required
 def category_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    query = Category.objects.get(id=pk)
+    query = get_object_or_404(Category, id=pk, user=request.user)  
     if request.method == 'POST':
         query.delete()
         return redirect('curso:category_list')
     return render(request, 'curso/category_confirm_delete.html', {'object': query})
+
 
 @login_required
 def product_list(request: HttpResponse) -> HttpResponse:

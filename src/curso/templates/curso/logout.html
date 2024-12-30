@@ -1,6 +1,8 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    <p>You have logged out</p>
-    <a href="{% url 'curso:index' %}"><button>Home</button></a>
+    <div class="container mt-5 text-center">
+        <p class="mb-4">You have logged out</p>
+        <a href="{% url 'curso:index' %}" class="btn btn-dark btn-lg">Home</a>
+    </div>
 {% endblock contenido %}

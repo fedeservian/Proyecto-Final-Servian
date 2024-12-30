@@ -1,0 +1,69 @@
+<head>
+    <style>
+        #mainNav {
+            background-color: white !important;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        #mainNav .navbar-nav .nav-link {
+            color: black !important;
+        }
+
+        #mainNav .navbar-nav .nav-link:hover {
+            color: #0056b3 !important;
+        }
+
+        #mainNav .navbar-brand {
+            color: black !important;
+            position: absolute; /* Posiciona el título de manera absoluta */
+            left: 10px; /* Ajusta la distancia de la izquierda */
+        }
+
+        #mainNav .navbar-brand:hover {
+            color: #0056b3 !important;
+        }
+
+        #mainNav .navbar-nav {
+            position: absolute; /* Posiciona la lista de navegación de manera absoluta */
+            right: 10px; /* Alinea la navegación a la derecha */
+        }
+
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#page-top">InnoByte</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'curso:index' %}">Home</a></li>
+                    {% if user.is_authenticated %}                
+                    <li class="nav-item"><a class="nav-link" href="{% url 'curso:management' %}">Management</a></li>                
+                    <li class="nav-item"><a class="nav-link" href="{% url 'curso:profile' %}">Profile</a></li>
+                    <form action="{% url 'curso:logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <a href="#" class="nav-link" onclick="this.closest('form').submit();">Logout</a>
+                    </form>
+                    
+                    {% else %}    
+                    <li class="nav-item"><a class="nav-link" href="{% url 'curso:register' %}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'curso:login' %}">Login</a></li>            
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'curso:about' %}">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+

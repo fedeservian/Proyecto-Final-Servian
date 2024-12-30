@@ -1,44 +1,12 @@
 {% extends 'curso/base.html' %}
 
+{% load static %}
+
 {% block contenido %}
     <main style="text-align: center;">
-        <h1 style="margin-top: 10px;">InnoByte</h1>
-
-
-
-
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
-        <div>
-            {% if user.is_authenticated %}
-                <a href="{% url 'curso:management' %}"><button>Management</button></a>
-                <a href="{% url 'curso:about' %}"><button>About me</button></a>
-
-
-
-                <a href="{% url 'curso:profile' %}">
-                    <button style="cursor: pointer;">Profile</button>
-                </a>
-
-                <form action="{% url 'curso:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
-
-            {% else %}
-                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; height: 65vh;">
-                    <p style="font-size: 40px;">¡Welcome!</p>
-                    <div style="display: flex; gap: 10px;">
-                        <a href="{% url 'curso:register' %}"><button>Register</button></a>
-                        <a href="{% url 'curso:login' %}"><button>Login</button></a>
-                        <a href="{% url 'curso:about' %}"><button>About me</button></a>
-                    </div>
-                </div>
-                </div>
-            {% endif %}
-        </div>
-
     </main>
 
 
@@ -47,8 +15,8 @@
         <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="text-center">
-                    <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
+                    <h1 class="mx-auto my-0 text-uppercase">InnoByte</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Empowering Your Production, Streamlining Your Success</h2>
                     <a class="btn btn-primary" href="#about">Get Started</a>
                 </div>
             </div>
@@ -59,15 +27,14 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8">
-                    <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
+                    <h2 class="text-white mb-4">Transforming Your Production Process for Greater Efficiency</h2>
                     <p class="text-white-50">
-                        Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                        <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
+                        InnoByte provides efficient solutions to enhance management and organization in production. Our platform is designed to optimize processes, increase productivity, and streamline control, driving growth and efficiency for your business.</a>
                         The theme is open source, and you can use it for any purpose, personal or commercial.
                     </p>
                 </div>
             </div>
-            <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
+            <img class="img-fluid" src="{% static 'curso/img/7.jpg' %}" alt="..." />
         </div>
     </section>
 <!-- Projects-->
@@ -75,23 +42,23 @@
         <div class="container px-4 px-lg-5">
         <!-- Featured Project Row-->
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." /></div>
+                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{% static 'curso/img/5.jpg' %}" alt="..." /></div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
-                        <h4>Shoreline</h4>
-                        <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                        <h4>Optimize</h4>
+                        <p class="text-black-50 mb-0">With InnoByte, transform your production processes into visual, manageable data. Our platform allows you to organize and optimize inventories, products, and orders, boosting efficiency and productivity for your business.</p>
                     </div>
                 </div>
             </div>
         <!-- Project One Row-->
             <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'curso/img/3.jpg' %}" alt="..." /></div>
                 <div class="col-lg-6">
                     <div class="bg-black text-center h-100 project">
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-left">
-                                <h4 class="text-white">Misty</h4>
-                                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                                <h4 class="text-white">Efficiency</h4>
+                                <p class="mb-0 text-white-50">InnoByte simplifies your production management, offering powerful tools to enhance productivity and streamline operations, all from the convenience of your computer</p>
                             </div>
                         </div>
                     </div>
@@ -99,13 +66,13 @@
             </div>
         <!-- Project Two Row-->
             <div class="row gx-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
+                <div class="col-lg-6"><img class="img-fluid" src="{% static 'curso/img/6.jpg' %}" alt="..." /></div>
                 <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project">
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-right">
-                                <h4 class="text-white">Mountains</h4>
-                                <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well!</p>
+                                <h4 class="text-white">Innovation</h4>
+                                <p class="mb-0 text-white-50">InnoByte brings modern solutions to your production process, combining efficient management with a focus on safety and growth, ensuring your business thrives with innovative tools and strategic control</p>
                             </div>
                         </div>
                     </div>

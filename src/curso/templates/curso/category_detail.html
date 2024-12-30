@@ -1,11 +1,11 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-<a href="{% url 'curso:category_list' %}" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
-    Back
-</a>
+    <a href="{% url 'curso:category_list' %}" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
+        Back
+    </a>
     <h1>Category - Detail view</h1>
-    
+
     <ul style="list-style: none; padding: 0;">
         <li><strong>Name:</strong> {{ object.name }}</li>
         <li><strong>Description:</strong>

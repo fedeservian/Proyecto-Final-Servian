@@ -1,20 +1,20 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-<a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
-    Back
-</a>
-<main style="text-align: center;">
-    <h1 style="margin-top: 10px;">Management</h1>
-    
-    <div>
-        {% if user.is_authenticated %}
-            <a href="{% url 'curso:category_list' %}"><button>Categories</button></a>
-            <a href="{% url 'curso:product_list' %}"><button>Products</button></a>
-            <a href="{% url 'curso:production_order_list' %}"><button>Production Orders</button></a>
-            <a href="{% url 'curso:inventory_list' %}"><button>Inventory</button></a>
-            
-        {% endif %}
-    </div>
-</main>
+    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
+        Back
+    </a>
+    <main style="text-align: center;">
+        <h1 style="margin-top: 10px;">Management</h1>
+
+        <div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'curso:category_list' %}"><button>Categories</button></a>
+                <a href="{% url 'curso:product_list' %}"><button>Products</button></a>
+                <a href="{% url 'curso:production_order_list' %}"><button>Production Orders</button></a>
+                <a href="{% url 'curso:inventory_list' %}"><button>Inventory</button></a>
+
+            {% endif %}
+        </div>
+    </main>
 {% endblock %}

@@ -2,13 +2,13 @@
 
 {% block contenido %}
 
-{% load static %}
+    {% load static %}
 
     <h1>About me</h1>
     <p style="padding: 0 20px;">Hi! I'm Federico Servian, passionate about data analysis and currently a student at Coderhouse, where I'm specializing in Python and Django. Throughout my training, I've gained skills in key tools such as Power BI, Tableau, SQL, and Excel, and I continue to develop myself through practical projects to apply this knowledge in real-world scenarios.
 
         One of these projects is this PCP (Production Planning and Control) platform, which I created to help companies manage their production more efficiently. By registering and logging in, you'll be able to load inventories, manage products, schedule production, and organize categories—all designed to optimize your production processes and facilitate decision-making.
-        
+
         My goal is to help companies make data-driven decisions, optimize processes, and add value through precise analysis. I love facing new challenges and constantly learning to improve my skills in the field of technology and data.</p>
     <img src="{% static 'curso/img/2.png' %}" alt="" style="max-height: 200px; width: auto;">
     <a href="{% url 'curso:index' %}"></a>
@@ -16,7 +16,7 @@
     <a href="https://www.linkedin.com/in/federico-servian-809a79243/" target="_blank" style="background-color: #0077B5; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">My LinkedIn</a>
     <br>
     <br>
-    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Home</a>  
-    
-    
+    <a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px;">Home</a>
+
+
 {% endblock contenido %}

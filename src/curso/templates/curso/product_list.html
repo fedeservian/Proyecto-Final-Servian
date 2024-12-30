@@ -1,7 +1,7 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-<a href="/" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
+<a href="{% url 'curso:management' %}" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
     Back
 </a>
     <h1>Product List</h1>

@@ -6,20 +6,24 @@
 
         <div class="row justify-content-center">
             {% if user.is_authenticated %}
-                <div class="col-12 col-md-4 mb-3">
+                <!-- Primera fila con dos botones -->
+                <div class="col-12 col-md-6 mb-3">
                     <a href="{% url 'curso:category_list' %}" class="btn btn-outline-primary w-100 btn-lg">Categories</a>
                 </div>
-                <div class="col-12 col-md-4 mb-3">
+                <div class="col-12 col-md-6 mb-3">
                     <a href="{% url 'curso:product_list' %}" class="btn btn-outline-primary w-100 btn-lg">Products</a>
                 </div>
-                <div class="col-12 col-md-4 mb-3">
+
+                <!-- Segunda fila con dos botones -->
+                <div class="col-12 col-md-6 mb-3">
                     <a href="{% url 'curso:production_order_list' %}" class="btn btn-outline-primary w-100 btn-lg">Production Orders</a>
                 </div>
-                <div class="col-12 col-md-4 mb-3">
+                <div class="col-12 col-md-6 mb-3">
                     <a href="{% url 'curso:inventory_list' %}" class="btn btn-outline-primary w-100 btn-lg">Inventory</a>
                 </div>
             {% endif %}
         </div>
     </main>
 {% endblock %}
+
 

@@ -1,11 +1,11 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    <div class="container mt-5" style="max-width: 600px;">
+    <div class="container mt-4" style="max-width: 500px;">
         {% if form.instance.pk %}
-            <h1 class="mb-4" style="font-size: 2rem; font-weight: bold;">Edit Category</h1>
+            <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Edit Category</h1>
         {% else %}
-            <h1 class="mb-4" style="font-size: 2rem; font-weight: bold;">Create Category</h1>
+            <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Create Category</h1>
         {% endif %}
 
         <form method="post" class="mb-4">
@@ -15,8 +15,8 @@
             </div>
 
             <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary btn-lg">Save</button>
-                <a href="{% url 'curso:category_list' %}" class="btn btn-danger btn-lg">Discard Changes</a>
+                <button type="submit" class="btn btn-primary btn-sm" style="font-size: 14px; padding: 6px 10px;">Save</button>
+                <a href="{% url 'curso:category_list' %}" class="btn btn-danger btn-sm" style="font-size: 14px; padding: 6px 10px;">Discard Changes</a>
             </div>
         </form>
     </div>

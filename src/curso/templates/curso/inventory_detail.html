@@ -1,15 +1,20 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    <a href="{% url 'curso:inventory_list' %}" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
-        Back
-    </a>
-    <h1>Inventory - Detail view</h1>
+    <div class="container mt-4" style="max-width: 800px;">
+        <a href="{% url 'curso:inventory_list' %}" class="btn btn-dark btn-sm mb-3" style="font-size: 12px; padding: 6px 10px; text-decoration: none;">
+            Back
+        </a>
 
-    <ul style="list-style: none; padding: 0;">
-        <li><strong>Order Number:</strong> {{ object.order_number }}</li>
-        <li><strong>Product:</strong> {{ object.product }}</li>
-        <li><strong>Location:</strong> {{ object.location }}</li>
-        <li><strong>Stock Quantity:</strong> {{ object.stock_quantity }}</li>
-    </ul>
-{% endblock contenido %}
+        <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Inventory - Detail View</h1>
+
+        <div class="card p-3 shadow-sm">
+            <ul class="list-unstyled" style="font-size: 14px;">
+                <li class="mb-2"><strong>Order Number:</strong> {{ object.order_number }}</li>
+                <li class="mb-2"><strong>Product:</strong> {{ object.product }}</li>
+                <li class="mb-2"><strong>Location:</strong> {{ object.location }}</li>
+                <li class="mb-2"><strong>Stock Quantity:</strong> {{ object.stock_quantity }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

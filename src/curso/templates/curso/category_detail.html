@@ -1,25 +1,26 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    <div class="container mt-4" style="max-width: 900px;">
-        <a href="{% url 'curso:category_list' %}" class="btn btn-dark btn-sm mb-4" style="font-size: 14px; padding: 8px 12px; text-decoration: none;">
+    <div class="container mt-4" style="max-width: 800px;">
+        <a href="{% url 'curso:category_list' %}" class="btn btn-dark btn-sm mb-3" style="font-size: 12px; padding: 6px 10px; text-decoration: none;">
             Back
         </a>
 
-        <h1 class="mb-4" style="font-size: 2rem; font-weight: bold;">Category - Detail View</h1>
+        <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Category - Detail View</h1>
 
-        <div class="card p-4 shadow-sm">
-            <ul class="list-unstyled">
-                <li class="mb-2"><strong>Name:</strong> <span class="text-muted">{{ object.name }}</span></li>
+        <div class="card p-3 shadow-sm">
+            <ul class="list-unstyled" style="font-size: 14px;">
+                <li class="mb-2"><strong>Name:</strong> <span class="text-muted" style="font-size: 14px;">{{ object.name }}</span></li>
                 <li class="mb-2"><strong>Description:</strong> 
                     {% if object.description %}
-                        <span>{{ object.description }}</span>
+                        <span style="font-size: 14px;">{{ object.description }}</span>
                     {% else %}
-                        <span class="text-muted">-</span>
+                        <span class="text-muted" style="font-size: 14px;">-</span>
                     {% endif %}
                 </li>
             </ul>
         </div>
     </div>
 {% endblock contenido %}
+
 

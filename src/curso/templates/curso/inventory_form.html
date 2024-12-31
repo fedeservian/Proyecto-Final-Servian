@@ -1,17 +1,23 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    {% if form.instance.pk %}
-        <h1>Edit Inventory</h1>
-    {% else %}
-        <h1>Create Inventory</h1>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-        <a href="{% url 'curso:inventory_list' %}" style="background-color: red; color: white; padding: 8.3px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; text-align: center;">
-            Discard Changes
-        </a>
-    </form>
-{% endblock contenido %}
+    <div class="container mt-4" style="max-width: 500px;">
+        {% if form.instance.pk %}
+            <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Edit Inventory</h1>
+        {% else %}
+            <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Create Inventory</h1>
+        {% endif %}
+
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary btn-sm" style="font-size: 14px; padding: 6px 10px;">Save</button>
+                <a href="{% url 'curso:inventory_list' %}" class="btn btn-danger btn-sm" style="font-size: 14px; padding: 6px 10px;">Discard Changes</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

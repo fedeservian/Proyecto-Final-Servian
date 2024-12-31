@@ -1,13 +1,20 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    <a href="{% url 'curso:production_order_list' %}" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
-        Back
-    </a>
-    <h1>Production Order - Deregistration</h1>
-    <p>Are you sure you want to delete {{ object }}? </p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Yes, I'm sure</button>
-    </form>
+    <div class="container mt-4" style="max-width: 500px;">
+        <a href="{% url 'curso:production_order_list' %}" class="btn btn-outline-dark btn-sm mb-3" style="font-size: 12px; padding: 6px 10px; text-decoration: none;">
+            Back
+        </a>
+
+        <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Production Order - Deregistration</h1>
+        <p class="mb-3" style="font-size: 1rem;">Are you sure you want to delete the production order <strong>{{ object }}</strong>?</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-danger btn-sm" style="font-size: 14px; padding: 6px 10px;">Yes, I'm sure</button>
+                <a href="{% url 'curso:production_order_list' %}" class="btn btn-secondary btn-sm" style="font-size: 14px; padding: 6px 10px;">Cancel</a>
+            </div>
+        </form>
+    </div>
 {% endblock contenido %}

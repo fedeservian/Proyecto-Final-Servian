@@ -1,57 +1,63 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    <a href="{% url 'curso:management' %}" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; text-decoration: none; border-radius: 5px; display: inline-block; position: absolute; top: 10px; left: 10px;">
-        Back
-    </a>
-    <h1>Inventory List</h1>
-    <a href="{% url 'curso:inventory_create' %}"><button>Create Inventory</button></a>
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-4" style="margin-left: 10px; margin-right: 10px;">
+        <h1 class="mb-4" style="text-align: left; font-size: 18px;">Inventory List</h1>
+        <a href="{% url 'curso:management' %}" class="btn btn-dark btn-sm" style="font-size: 10px; padding: 4px 8px;">
+            Back
+        </a>
+    </div>
 
-    <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr>
-                <th>Order Number</th>
-                <th>Product</th>
-                <th>Location</th>
-                <th>Stock Quantity</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for object in object_list %}
-                <tr>
-                    <td>{{ object.order_number }}</td>
-                    <td>{{ object.product }}</td>
-                    <td>{{ object.location }}</td>
-                    <td>{{ object.stock_quantity }}</td>
-                    <td>
-                        {% if object.id %}
-                            <a href="{% url 'curso:inventory_update' object.id %}">
-                                <button>Edit</button>
-                            </a>
-                        {% else %}
-                            <span>No ID</span>
-                        {% endif %}
-                        {% if object.id %}
-                            <a href="{% url 'curso:inventory_detail' object.id %}">
-                                <button>View</button>
-                            </a>
-                        {% else %}
-                            <span>No ID</span>
-                        {% endif %}
-                        <a href="{% url 'curso:inventory_delete' object.id %}">
-                            <button>Delete</button>
-                        </a>
+    <form action="" method="get" class="mb-4" style="margin-left: 10px; margin-right: 10px;">
+        <div class="input-group">
+            <input type="text" name="search" placeholder="Search inventory..." class="form-control form-control-sm" style="font-size: 12px;">
+            <button type="submit" class="btn btn-primary btn-sm" style="font-size: 12px; padding: 4px 8px;">Go</button>
+        </div>
+    </form>
 
-                    </td>
-                </tr>
-            {% empty %}
+    <a href="{% url 'curso:inventory_create' %}" class="btn btn-success btn-sm mb-3" style="font-size: 12px; padding: 4px 8px; margin-left: 10px; margin-right: 10px;">Create Inventory</a>
+
+    <div style="margin-left: 10px; margin-right: 10px;">
+        <table class="table table-bordered table-sm">
+            <thead>
                 <tr>
-                    <td colspan="5">No production orders found.</td>
+                    <th style="font-size: 12px;">Order Number</th>
+                    <th style="font-size: 12px;">Product</th>
+                    <th style="font-size: 12px;">Location</th>
+                    <th style="font-size: 12px;">Stock Quantity</th>
+                    <th style="font-size: 12px;">Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock contenido %}
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td style="font-size: 12px;">{{ object.order_number }}</td>
+                        <td style="font-size: 12px;">{{ object.product }}</td>
+                        <td style="font-size: 12px;">{{ object.location }}</td>
+                        <td style="font-size: 12px;">{{ object.stock_quantity }}</td>
+                        <td>
+                            {% if object.id %}
+                                <a href="{% url 'curso:inventory_update' object.id %}" class="btn btn-warning btn-sm" style="font-size: 10px; padding: 4px 8px;">Edit</a>
+                            {% else %}
+                                <span>No ID</span>
+                            {% endif %}
+                            {% if object.id %}
+                                <a href="{% url 'curso:inventory_detail' object.id %}" class="btn btn-info btn-sm" style="font-size: 10px; padding: 4px 8px;">View</a>
+                            {% else %}
+                                <span>No ID</span>
+                            {% endif %}
+                            <a href="{% url 'curso:inventory_delete' object.id %}" class="btn btn-danger btn-sm" style="font-size: 10px; padding: 4px 8px;">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" style="font-size: 12px;">No production orders found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
 
 

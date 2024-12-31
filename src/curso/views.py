@@ -11,7 +11,10 @@ from django.views.generic import CreateView, UpdateView
 from .forms import CategoryForm, ProductForm, ProductionOrderForm, InventoryForm, CustomAuthenticationForm, CustomCreationForm, UserProfileForm
 from .models import Category, Product, ProductionOrder, Inventory
 from django.views.generic import TemplateView
-
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Category
 
 
 
@@ -21,10 +24,6 @@ def index(request):
 def about(request):
     return render(request, "curso/about.html")
 
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from .models import Category
 
 @login_required
 def category_list(request: HttpResponse) -> HttpResponse:
@@ -169,7 +168,7 @@ def production_order_delete(request: HttpRequest, pk: int) -> HttpResponse:
     if request.method == 'POST':
         query.delete()
         return redirect('curso:production_order_list')
-    return render(request, 'curso/producttion_order_confirm_delete.html', {'object': query})
+    return render(request, 'curso/production_order_confirm_delete.html', {'object': query})
 
 @login_required
 def inventory_list(request):

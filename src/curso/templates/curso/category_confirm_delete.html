@@ -1,20 +1,21 @@
 {% extends 'curso/base.html' %}
 
 {% block contenido %}
-    <div class="container mt-5" style="max-width: 600px;">
-        <a href="{% url 'curso:category_list' %}" class="btn btn-outline-dark btn-sm mb-4" style="font-size: 14px; padding: 8px 12px; text-decoration: none;">
+    <div class="container mt-4" style="max-width: 500px;">
+        <a href="{% url 'curso:category_list' %}" class="btn btn-outline-dark btn-sm mb-3" style="font-size: 12px; padding: 6px 10px; text-decoration: none;">
             Back
         </a>
 
-        <h1 class="mb-4" style="font-size: 2rem; font-weight: bold;">Category - Deregistration</h1>
-        <p class="mb-4" style="font-size: 1.1rem;">Are you sure you want to delete the category <strong>{{ object }}</strong>?</p>
+        <h1 class="mb-3" style="font-size: 1.5rem; font-weight: bold;">Category - Deregistration</h1>
+        <p class="mb-3" style="font-size: 1rem;">Are you sure you want to delete the category <strong>{{ object }}</strong>?</p>
 
         <form method="post">
             {% csrf_token %}
             <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-danger btn-lg">Yes, I'm sure</button>
-                <a href="{% url 'curso:category_list' %}" class="btn btn-secondary btn-lg">Cancel</a>
+                <button type="submit" class="btn btn-danger btn-sm" style="font-size: 14px; padding: 6px 10px;">Yes, I'm sure</button>
+                <a href="{% url 'curso:category_list' %}" class="btn btn-secondary btn-sm" style="font-size: 14px; padding: 6px 10px;">Cancel</a>
             </div>
         </form>
     </div>
 {% endblock contenido %}
+

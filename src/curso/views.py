@@ -92,13 +92,13 @@ def product_list(request: HttpResponse) -> HttpResponse:
 def product_create(request):
     if request.method == "GET":
         form = ProductForm()
-        # Filtrar las categorías solo para el usuario autenticado
+        
         form.fields['category'].queryset = Category.objects.filter(user=request.user)
     elif request.method == "POST":
         form = ProductForm(request.POST)
         if form.is_valid():
             product = form.save(commit=False)
-            product.user = request.user  # Asignar el usuario autenticado
+            product.user = request.user  
             product.save()
             return redirect("curso:product_list")
     
@@ -139,15 +139,15 @@ def production_order_list(request):
 @login_required
 def production_order_create(request):
     if request.method == "GET":
-        # Filtrar los productos por el usuario autenticado
+        
         form = ProductionOrderForm()
-        form.fields['product'].queryset = Product.objects.filter(user=request.user)  # Filtrar productos por usuario
+        form.fields['product'].queryset = Product.objects.filter(user=request.user)  
     elif request.method == "POST":
         form = ProductionOrderForm(request.POST)
-        # Asegurarnos de que el usuario autenticado sea asignado
+        
         if form.is_valid():
             order = form.save(commit=False)
-            order.user = request.user  # Asignar el usuario autenticado a la orden
+            order.user = request.user  
             order.save()
             return redirect("curso:production_order_list")
     
@@ -188,13 +188,13 @@ def inventory_list(request):
 def inventory_create(request):
     if request.method == "GET":
         form = InventoryForm()
-        # Filtrar los productos solo para el usuario autenticado
+        
         form.fields['product'].queryset = Product.objects.filter(user=request.user)
     elif request.method == "POST":
         form = InventoryForm(request.POST)
         if form.is_valid():
             inventory = form.save(commit=False)
-            inventory.user = request.user  # Asignar el usuario autenticado
+            inventory.user = request.user  
             inventory.save()
             return redirect("curso:inventory_list")
     
